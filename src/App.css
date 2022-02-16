@@ -7,6 +7,7 @@
 
 #header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: rgb(200, 215, 235);
 }
@@ -22,6 +23,7 @@
 .header__left,
 .header__right {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .header__button {
@@ -46,6 +48,7 @@
 i {
   font-size: 20px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .user__btn {
@@ -88,6 +91,7 @@ i {
 main {
   background: url(https://cdn.wallpapersafari.com/50/33/VzSu7c.jpg);
   height: calc(100vh - 46.4px);
+  overflow: hidden;
 }
 
 .divider {
@@ -98,6 +102,7 @@ main {
 
 .board__header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
