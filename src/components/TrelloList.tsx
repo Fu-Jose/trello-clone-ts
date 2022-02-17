@@ -9,17 +9,13 @@ interface props {
 }
 
 export const TrelloList = (props: props) => {
-  // console.log(props.data.cards);
-
   return (
     <List>
       <Container>
         <ListTitle title={props.data.title} />
-        {props.data.cards.map((id: string) => {
-          // const card = props.data.cards;
-          // console.log(id, "SCEMO");
-          return <TrelloCard data={id} key={id} />;
-        })}
+        {props.data.cards.map((card: any) => (
+          <TrelloCard data={card} key={card.id} />
+        ))}
         <AddCardOrList type="card" />
       </Container>
     </List>
