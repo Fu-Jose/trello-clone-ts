@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import ContextAPI from "../context";
 
 interface props {
   type: string;
@@ -8,6 +9,19 @@ interface props {
 
 const AddCardOrListText = (props: props) => {
   const [text, setText] = useState("");
+
+  const { addCard, addList } = useContext(ContextAPI);
+
+  const handleCreate = () => {
+    if (props.type === "card") {
+      // addCard(text, listId);
+    } else {
+      addList(text);
+    }
+    setText("");
+    props.setOpen(false);
+  };
+
   return (
     <>
       <Container>
@@ -17,7 +31,7 @@ const AddCardOrListText = (props: props) => {
           rows={props.type === "card" ? "2" : "1"}
           value={text}
           onChange={(e: any) => setText(e.target.value)}
-          onBlur={() => props.setOpen(false)}
+          // onBlur={() => props.setOpen(false)}
           placeholder={
             props.type === "card"
               ? "Enter a name for this card..."
@@ -27,7 +41,9 @@ const AddCardOrListText = (props: props) => {
       </Container>
       <div className="d-flex justify-content-between">
         <div>
-          <Button>{props.type === "card" ? "Add Card" : "Add List"}</Button>
+          <Button onClick={() => handleCreate()}>
+            {props.type === "card" ? "Add Card" : "Add List"}
+          </Button>
           <i className="bx bx-sm bx-x" onClick={() => props.setOpen(false)}></i>
         </div>
         {props.type === "card" && (
