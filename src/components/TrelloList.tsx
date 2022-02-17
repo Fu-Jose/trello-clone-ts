@@ -4,14 +4,22 @@ import { ListTitle } from "./ListTitle";
 import { TrelloCard } from "./TrelloCard";
 import styled from "styled-components";
 
-export const TrelloList = () => {
+interface props {
+  data: any;
+}
+
+export const TrelloList = (props: props) => {
+  // console.log(props.data.cards);
+
   return (
     <List>
       <Container>
-        <ListTitle />
-        <TrelloCard />
-        <TrelloCard />
-        <TrelloCard />
+        <ListTitle title={props.data.title} />
+        {props.data.cards.map((id: string) => {
+          // const card = props.data.cards;
+          // console.log(id, "SCEMO");
+          return <TrelloCard data={id} key={id} />;
+        })}
         <AddCardOrList type="card" />
       </Container>
     </List>

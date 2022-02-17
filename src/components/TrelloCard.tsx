@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+interface props {
+  data: any;
+}
 
-export const TrelloCard = () => {
+export const TrelloCard = (props: props) => {
   return (
     <Card>
-      <CardText>Comprar las compras</CardText>
+      <CardText>{props.data.text}</CardText>
     </Card>
   );
 };

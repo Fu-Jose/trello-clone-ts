@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { TrelloList } from "./TrelloList";
 import styled from "styled-components";
 import AddCardOrList from "./AddCardOrList";
+import { mockData } from "../data/mockdata";
 
 export default function BoardCanvas() {
+  const [data, setData] = useState(mockData);
   return (
     <Canvas>
-      <TrelloList />
-      <TrelloList />
+      {data.listsIds.map((id: string) => {
+        const list = data.lists[id];
+        return <TrelloList data={list} key={id} />;
+      })}
       <List>
         <Container>
           <AddCardOrList type="list" />

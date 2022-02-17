@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-export const ListTitle = () => {
+interface props {
+  title: string;
+}
+
+export const ListTitle = (props: props) => {
   return (
     <Title>
-      <TitleText>TO DO</TitleText>
+      <TitleText>{props.title}</TitleText>
       <i className="bx bx-dots-horizontal-rounded"></i>
     </Title>
   );

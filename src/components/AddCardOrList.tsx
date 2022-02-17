@@ -10,11 +10,6 @@ interface props {
 const AddCardOrList = (props: props) => {
   const [open, setOpen] = useState(false);
 
-  // const focusInput: Function = () => {
-  //   const input = document.getElementById("input");
-  //   input.focus();
-  // };
-
   return (
     <div>
       {open ? (
