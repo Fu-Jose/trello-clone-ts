@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 interface props {
   type: string;
+  listId: string;
   // setOpen: boolean;
 }
 
@@ -13,7 +14,11 @@ const AddCardOrList = (props: props) => {
   return (
     <div>
       {open ? (
-        <AddCardOrListText type={props.type} setOpen={setOpen} />
+        <AddCardOrListText
+          type={props.type}
+          listId={props.listId}
+          setOpen={setOpen}
+        />
       ) : (
         <Container onClick={() => setOpen(true)}>
           <Text>{props.type === "card" ? "+ Add a card" : "+ Add a list"}</Text>

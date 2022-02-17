@@ -16,7 +16,7 @@ export const TrelloList = (props: props) => {
         {props.data.cards.map((card: any) => (
           <TrelloCard data={card} key={card.id} />
         ))}
-        <AddCardOrList type="card" />
+        <AddCardOrList type="card" listId={props.data.id} />
       </Container>
     </List>
   );

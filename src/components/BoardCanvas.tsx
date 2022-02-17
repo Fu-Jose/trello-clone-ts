@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TrelloList } from "./TrelloList";
 import styled from "styled-components";
 import AddCardOrList from "./AddCardOrList";
-import { mockData } from "../data/mockdata";
+import ContextAPI from "../context";
 
-export default function BoardCanvas() {
-  const [data, setData] = useState(mockData);
+const BoardCanvas = () => {
+  const { data } = useContext(ContextAPI);
   return (
     <Canvas>
       {data.listsIds.map((id: string) => {
@@ -14,12 +14,14 @@ export default function BoardCanvas() {
       })}
       <List>
         <Container>
-          <AddCardOrList type="list" />
+          <AddCardOrList type="list" listId={""} />
         </Container>
       </List>
     </Canvas>
   );
-}
+};
+
+export default BoardCanvas;
 
 const Canvas = styled.div`
   display: flex;

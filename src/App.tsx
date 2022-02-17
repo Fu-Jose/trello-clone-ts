@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Home from "./pages/home";
 import ContextAPI from "./context";
+import { mockData } from "./data/mockdata";
 
 function App() {
   const addCard = () => {
@@ -10,8 +11,9 @@ function App() {
   const addList = () => {
     console.log("LIST");
   };
+  const [data, setData] = useState(mockData);
   return (
-    <ContextAPI.Provider value={{ addCard, addList }}>
+    <ContextAPI.Provider value={{ addCard, addList, data }}>
       <div className="App">
         <Home />
       </div>

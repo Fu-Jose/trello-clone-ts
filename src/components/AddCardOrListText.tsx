@@ -4,6 +4,7 @@ import ContextAPI from "../context";
 
 interface props {
   type: string;
+  listId: string;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -13,13 +14,21 @@ const AddCardOrListText = (props: props) => {
   const { addCard, addList } = useContext(ContextAPI);
 
   const handleCreate = () => {
-    if (props.type === "card") {
-      // addCard(text, listId);
-    } else {
-      addList(text);
+    if (text !== "") {
+      if (props.type === "card") {
+        addCard(text, props.listId);
+      } else {
+        addList(text);
+      }
+      setText("");
+      props.setOpen(false);
     }
-    setText("");
-    props.setOpen(false);
+    // REFACTOR THIS ?
+    // {
+    //   text !== "" && props.type == "card"
+    //     ? addCard(text, props.listId)
+    //     : addList(text);
+    // }
   };
 
   return (
