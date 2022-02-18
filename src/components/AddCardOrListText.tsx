@@ -22,6 +22,8 @@ const AddCardOrListText = (props: props) => {
       }
       setText("");
       props.setOpen(false);
+    } else {
+      props.setOpen(false);
     }
     // REFACTOR THIS ?
     // {
@@ -40,7 +42,7 @@ const AddCardOrListText = (props: props) => {
           rows={props.type === "card" ? "2" : "1"}
           value={text}
           onChange={(e: any) => setText(e.target.value)}
-          // onBlur={() => props.setOpen(false)}
+          onBlur={() => handleCreate()}
           placeholder={
             props.type === "card"
               ? "Enter a name for this card..."
