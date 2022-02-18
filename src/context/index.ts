@@ -4,6 +4,7 @@ import {ContextState} from './types'
 const contextDefaultValues : ContextState ={
   addCard:()=>{},
   addList:()=>{},
+  onDragEnd:()=>{},
   data:{},
 }
 

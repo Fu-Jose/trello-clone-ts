@@ -10,27 +10,20 @@ interface props {
 
 const AddCardOrListText = (props: props) => {
   const [text, setText] = useState("");
-
   const { addCard, addList } = useContext(ContextAPI);
 
   const handleCreate = () => {
-    if (text !== "") {
-      if (props.type === "card") {
-        addCard(text, props.listId);
-      } else {
-        addList(text);
-      }
-      setText("");
-      props.setOpen(false);
-    } else {
-      props.setOpen(false);
+    if (text === "") {
+      return props.setOpen(false);
     }
-    // REFACTOR THIS ?
-    // {
-    //   text !== "" && props.type == "card"
-    //     ? addCard(text, props.listId)
-    //     : addList(text);
-    // }
+
+    if (props.type === "card") {
+      addCard(text, props.listId);
+    } else {
+      addList(text);
+    }
+    setText("");
+    props.setOpen(false);
   };
 
   return (

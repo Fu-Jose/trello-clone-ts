@@ -6,12 +6,62 @@ import ContextAPI from "../context";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const BoardCanvas = () => {
-  const { data } = useContext(ContextAPI);
-  const onDragEnd = (result: any) => {
-    console.log(result);
-  };
+  const { data, onDragEnd } = useContext(ContextAPI);
+  console.log(data);
+  // const onDragEnd = (result: any) => {
+  //   const {
+  //     source,
+  //     source: { droppableId: srcDropId, index: srcIndex },
+  //     destination,
+  //     destination: { droppableId: destDropId, index: destIndex },
+  //     draggableId,
+  //     type,
+  //   } = result;
+
+  //   console.table([
+  //     {
+  //       srcDropId,
+  //       destDropId,
+  //       draggableId,
+  //     },
+  //   ]);
+
+  //   console.table([
+  //     {
+  //       type,
+  //       srcIndex,
+  //       destIndex,
+  //     },
+  //   ]);
+
+  //   if (!destination) {
+  //     return;
+  //   }
+
+  //   if (type === "list") {
+  //     const newListsIds = data.listsIds;
+  //     newListsIds.splice(srcIndex, 1);
+  //     newListsIds.splice(destIndex, 0, draggableId);
+  //   }
+
+  //   const srcList = data.lists[srcDropId];
+  //   const destList = data.lists[destDropId];
+
+  //   const draggingCard = srcList.cards.filter(
+  //     (card: { id: string }) => card.id === draggableId
+  //   )[0];
+
+  //   if (srcDropId === destDropId) {
+  //     srcList.cards.splice(srcIndex, 1);
+  //     destList.cards.splice(destIndex, 0, draggingCard);
+  //     setData({
+  //       ...data,
+  //       lists:{...data.lists,[srcList.id]:destList}
+  //     })
+  //   }
+  // };
+
   return (
-    // <Canvas>
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="boardCanvas" type="list" direction="horizontal">
         {(provided) => (
@@ -33,7 +83,6 @@ const BoardCanvas = () => {
         )}
       </Droppable>
     </DragDropContext>
-    // </Canvas>
   );
 };
 
