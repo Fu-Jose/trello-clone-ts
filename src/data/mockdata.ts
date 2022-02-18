@@ -10,15 +10,15 @@ export const mockData:mock = {
       title: "TO DO",
       cards: [
         {
-          id: "card01",
+          id: "card001",
           text: "Improve performance",
         },
         {
-          id: "card02",
+          id: "card002",
           text: "Migration to material UI",
         },
         {
-          id: "card03",
+          id: "card003",
           text: "Fix payment bug",
         },
       ],
@@ -28,11 +28,11 @@ export const mockData:mock = {
       title: "DOING",
       cards: [
         {
-          id: "card01",
+          id: "card101",
           text: "Refactoring functions",
         },
         {
-          id: "card02",
+          id: "card102",
           text: "Cart functionality",
         },
       ],
@@ -42,15 +42,15 @@ export const mockData:mock = {
       title: "DONE",
       cards: [
         {
-          id: "card01",
+          id: "card201",
           text: "Private routing",
         },
         {
-          id: "card02",
+          id: "card202",
           text: "Admin page and dashboard",
         },
         {
-          id: "card03",
+          id: "card203",
           text: "Middlewares",
         },
       ],
@@ -60,11 +60,11 @@ export const mockData:mock = {
       title: "REVIEW",
       cards: [
         {
-          id: "card01",
+          id: "card301",
           text: "Emailing service",
         },
         {
-          id: "card02",
+          id: "card302",
           text: "Redux Store (Not updating)",
         },
       ],

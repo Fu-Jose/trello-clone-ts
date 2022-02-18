@@ -3,21 +3,37 @@ import { TrelloList } from "./TrelloList";
 import styled from "styled-components";
 import AddCardOrList from "./AddCardOrList";
 import ContextAPI from "../context";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const BoardCanvas = () => {
   const { data } = useContext(ContextAPI);
+  const onDragEnd = (result: any) => {
+    console.log(result);
+  };
   return (
-    <Canvas>
-      {data.listsIds.map((id: string) => {
-        const list = data.lists[id];
-        return <TrelloList data={list} key={id} />;
-      })}
-      <List>
-        <Container>
-          <AddCardOrList type="list" listId={""} />
-        </Container>
-      </List>
-    </Canvas>
+    // <Canvas>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="boardCanvas" type="list" direction="horizontal">
+        {(provided) => (
+          <Canvas
+            className=""
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {data.listsIds.map((id: string, index: number) => (
+              <TrelloList data={data.lists[id]} key={id} index={index} />
+            ))}
+            {provided.placeholder}
+            <List>
+              <Container>
+                <AddCardOrList type="list" listId={""} />
+              </Container>
+            </List>
+          </Canvas>
+        )}
+      </Droppable>
+    </DragDropContext>
+    // </Canvas>
   );
 };
 

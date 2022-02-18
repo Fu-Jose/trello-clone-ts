@@ -19,8 +19,8 @@ export const ListTitle = (props: props) => {
           onKeyPress={(e: any) => e.key === "Enter" && setOpen(false)}
         />
       ) : (
-        <Title onClick={() => setOpen(true)}>
-          <TitleText>{title}</TitleText>
+        <Title>
+          <TitleText onClick={() => setOpen(true)}>{title}</TitleText>
           <i className="bx bx-dots-horizontal-rounded"></i>
         </Title>
       )}
