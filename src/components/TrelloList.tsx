@@ -20,10 +20,14 @@ export const TrelloList = (props: props) => {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <ListTitle title={props.data.title} />
+            <ListTitle data={props.data} />
             <Droppable droppableId={props.data.id}>
               {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
+                <div
+                  style={{ minHeight: "1px" }}
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
                   {props.data.cards.map((card: any, index: number) => (
                     <TrelloCard data={card} key={card.id} index={index} />
                   ))}

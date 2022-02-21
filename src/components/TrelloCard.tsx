@@ -9,6 +9,12 @@ interface props {
 export const TrelloCard = (props: props) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(props.data.text);
+
+  const edit = () => {
+    props.data.text = text;
+    setOpen(false);
+  };
+
   return (
     <>
       {open ? (
@@ -17,7 +23,7 @@ export const TrelloCard = (props: props) => {
             autoFocus
             value={text}
             onChange={(e: any) => setText(e.target.value)}
-            onBlur={() => setOpen(false)}
+            onBlur={() => edit()}
             onKeyPress={(e: any) => e.key === "Enter" && setOpen(false)}
           />
         </div>
@@ -28,9 +34,12 @@ export const TrelloCard = (props: props) => {
               ref={provided.innerRef}
               {...provided.dragHandleProps}
               {...provided.draggableProps}
-              onClick={() => setOpen(true)}
             >
               <CardText>{text}</CardText>
+              <i
+                className="bx bx-edit d-none align-self-end"
+                onClick={() => setOpen(true)}
+              ></i>
             </Card>
           )}
         </Draggable>
@@ -40,10 +49,15 @@ export const TrelloCard = (props: props) => {
 };
 
 const Card = styled.div`
+  display: flex;
+  justify-content: space-between;
   background-color: white;
   padding: 5px;
   margin: 0px 3px 3px 3px;
   border-radius: 5px;
+  &:hover i {
+    display: block !important;
+  }
 `;
 
 const CardText = styled.span`

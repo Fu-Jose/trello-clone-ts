@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 interface props {
-  title: string;
+  data: any;
 }
 
 export const ListTitle = (props: props) => {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState(props.title);
+  const [title, setTitle] = useState(props.data.title);
+
+  const edit = () => {
+    props.data.title = title;
+    setOpen(false);
+  };
+
   return (
     <>
       {open ? (
@@ -16,8 +22,8 @@ export const ListTitle = (props: props) => {
             autoFocus
             value={title}
             onChange={(e: any) => setTitle(e.target.value)}
-            onBlur={() => setOpen(false)}
-            onKeyPress={(e: any) => e.key === "Enter" && setOpen(false)}
+            onBlur={() => edit()}
+            onKeyPress={(e: any) => e.key === "Enter" && edit()}
           />
         </Container>
       ) : (

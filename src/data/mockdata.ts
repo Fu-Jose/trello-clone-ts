@@ -70,5 +70,5 @@ export const mockData:mock = {
       ],
     },
   },
-  listsIds: ["list01", "list02", "list03", "list04"],
+  listsIds: ["list01", "list03", "list02", "list04"],
 };

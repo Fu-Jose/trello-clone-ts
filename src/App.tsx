@@ -52,21 +52,21 @@ function App() {
       type,
     } = result;
 
-    console.table([
-      {
-        srcDropId,
-        destDropId,
-        draggableId,
-      },
-    ]);
+    // console.table([
+    //   {
+    //     srcDropId,
+    //     destDropId,
+    //     draggableId,
+    //   },
+    // ]);
 
-    console.table([
-      {
-        type,
-        srcIndex,
-        destIndex,
-      },
-    ]);
+    // console.table([
+    //   {
+    //     type,
+    //     srcIndex,
+    //     destIndex,
+    //   },
+    // ]);
 
     if (!destination) {
       return;
@@ -76,30 +76,37 @@ function App() {
       const newListsIds = data.listsIds;
       newListsIds.splice(srcIndex, 1);
       newListsIds.splice(destIndex, 0, draggableId);
-    }
-
-    const srcList = data.lists[srcDropId];
-    const destList = data.lists[destDropId];
-
-    const draggingCard = srcList.cards.filter(
-      (card: { id: string }) => card.id === draggableId
-    )[0];
-
-    if (srcDropId === destDropId) {
-      srcList.cards.splice(srcIndex, 1);
-      destList.cards.splice(destIndex, 0, draggingCard);
       setData({
         ...data,
-        lists: { ...data.lists, [srcList.id]: destList },
+        listsIds: newListsIds,
       });
     } else {
-      srcList.cards.splice(srcIndex, 1);
-      destList.cards.splice(destIndex, 0, draggingCard);
-      // setData({
-      //   ...data.lists,
-      //   [srcList.id]: srcList,
-      //   [destList.id]: destList,
-      // });
+      const srcList = data.lists[srcDropId];
+      const destList = data.lists[destDropId];
+
+      const draggingCard = srcList.cards.filter(
+        (card: { id: string }) => card.id === draggableId
+      )[0];
+
+      if (srcDropId === destDropId) {
+        srcList.cards.splice(srcIndex, 1);
+        destList.cards.splice(destIndex, 0, draggingCard);
+        setData({
+          ...data,
+          lists: { ...data.lists, [srcList.id]: destList },
+        });
+      } else {
+        srcList.cards.splice(srcIndex, 1);
+        destList.cards.splice(destIndex, 0, draggingCard);
+        setData({
+          ...data,
+          lists: {
+            ...data.lists,
+            [srcList.id]: srcList,
+            [destList.id]: destList,
+          },
+        });
+      }
     }
   };
 
