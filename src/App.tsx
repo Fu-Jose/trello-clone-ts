@@ -11,7 +11,7 @@ function App() {
   const addCard = (text: string, listId: string) => {
     const newCardId = uuid();
     const newCard = {
-      id: newCardId,
+      id: `_${newCardId}`,
       text: text,
     };
     const list = data.lists[listId];

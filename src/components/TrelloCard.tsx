@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
+import ModalCard from "./ModalCard";
 interface props {
   data: any;
+  list: string;
   index: number;
 }
 
 export const TrelloCard = (props: props) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(props.data.text);
+
+  const [modal, setModal] = useState(false);
 
   const edit = () => {
     props.data.text = text;
@@ -28,21 +32,30 @@ export const TrelloCard = (props: props) => {
           />
         </div>
       ) : (
-        <Draggable draggableId={props.data.id} index={props.index}>
-          {(provided) => (
-            <Card
-              ref={provided.innerRef}
-              {...provided.dragHandleProps}
-              {...provided.draggableProps}
-            >
-              <CardText>{text}</CardText>
-              <i
-                className="bx bx-edit d-none align-self-end"
-                onClick={() => setOpen(true)}
-              ></i>
-            </Card>
-          )}
-        </Draggable>
+        <>
+          <Draggable draggableId={props.data.id} index={props.index}>
+            {(provided) => (
+              <Card
+                ref={provided.innerRef}
+                {...provided.dragHandleProps}
+                {...provided.draggableProps}
+              >
+                <CardText
+                  data-bs-toggle="modal"
+                  data-bs-target={`#${props.data.id}`}
+                  onClick={() => setModal(true)}
+                >
+                  {text}
+                </CardText>
+                <i
+                  className="bx bx-edit d-none align-self-start"
+                  onClick={() => setOpen(true)}
+                ></i>
+              </Card>
+            )}
+          </Draggable>
+          <ModalCard data={props.data} list={props.list} index={props.index} />
+        </>
       )}
     </>
   );
@@ -61,6 +74,7 @@ const Card = styled.div`
 `;
 
 const CardText = styled.span`
+  flex-grow: 1;
   padding-left: 5px;
 `;
 

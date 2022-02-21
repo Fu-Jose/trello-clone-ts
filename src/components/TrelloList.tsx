@@ -29,7 +29,12 @@ export const TrelloList = (props: props) => {
                   {...provided.droppableProps}
                 >
                   {props.data.cards.map((card: any, index: number) => (
-                    <TrelloCard data={card} key={card.id} index={index} />
+                    <TrelloCard
+                      data={card}
+                      list={props.data.title}
+                      key={card.id}
+                      index={index}
+                    />
                   ))}
                   {provided.placeholder}
                 </div>
