@@ -4,11 +4,17 @@ interface props {
   data: any;
   list: string;
   index: number;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ModalCard = (props: props) => {
   return (
-    <div className="modal" tabIndex={props.index} id={props.data.id}>
+    <div
+      className="modal"
+      tabIndex={props.index}
+      id={props.data.id}
+      data-bs-backdrop="static"
+    >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -18,10 +24,13 @@ const ModalCard = (props: props) => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              onClick={() => {
+                props.setOpen(false);
+              }}
             ></button>
           </div>
           <div className="modal-body">
-            <p>FROM LIST "{props.list}"</p>
+            <p>{`FROM LIST "${props.list}"`}</p>
           </div>
         </div>
       </div>

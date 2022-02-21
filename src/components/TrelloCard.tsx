@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import ModalCard from "./ModalCard";
@@ -11,7 +11,6 @@ interface props {
 export const TrelloCard = (props: props) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(props.data.text);
-
   const [modal, setModal] = useState(false);
 
   const edit = () => {
@@ -39,22 +38,26 @@ export const TrelloCard = (props: props) => {
                 ref={provided.innerRef}
                 {...provided.dragHandleProps}
                 {...provided.draggableProps}
+                data-bs-toggle="modal"
+                data-bs-target={`#${props.data.id}`}
+                onMouseUp={() => setModal(true)}
               >
-                <CardText
-                  data-bs-toggle="modal"
-                  data-bs-target={`#${props.data.id}`}
-                  onClick={() => setModal(true)}
-                >
-                  {text}
-                </CardText>
+                <CardText>{text}</CardText>
                 <i
                   className="bx bx-edit d-none align-self-start"
-                  onClick={() => setOpen(true)}
+                  onMouseDown={() => setOpen(true)}
                 ></i>
+                {modal && (
+                  <ModalCard
+                    data={props.data}
+                    list={props.list}
+                    index={props.index}
+                    setOpen={setModal}
+                  />
+                )}
               </Card>
             )}
           </Draggable>
-          <ModalCard data={props.data} list={props.list} index={props.index} />
         </>
       )}
     </>
