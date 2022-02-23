@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
-import ModalCard from "./ModalCard";
+import ContextAPI from "../context";
+
 interface Props {
   data: any;
   list: string;
@@ -11,11 +12,15 @@ interface Props {
 export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(data.text);
-  const [modal, setModal] = useState(false);
 
   const edit = () => {
     data.text = text;
     setOpen(false);
+  };
+
+  const { setModal } = useContext(ContextAPI);
+  const modalSwitch = () => {
+    return setModal({ data: data, list: list, index: index });
   };
 
   return (
@@ -40,21 +45,13 @@ export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
                 {...provided.draggableProps}
                 data-bs-toggle="modal"
                 data-bs-target={`#${data.id}`}
-                onMouseUp={() => setModal(true)}
+                onMouseUp={modalSwitch}
               >
                 <CardText>{text}</CardText>
                 <i
                   className="bx bx-edit d-none align-self-start"
                   onMouseDown={() => setOpen(true)}
                 ></i>
-                {modal && (
-                  <ModalCard
-                    data={data}
-                    list={list}
-                    index={index}
-                    setOpen={setModal}
-                  />
-                )}
               </Card>
             )}
           </Draggable>
@@ -73,6 +70,9 @@ const Card = styled.div`
   border-radius: 5px;
   &:hover i {
     display: block !important;
+  }
+  &:focus-visible {
+    outline: none !important;
   }
 `;
 

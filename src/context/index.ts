@@ -6,6 +6,8 @@ const contextDefaultValues : ContextState ={
   addList:()=>{},
   onDragEnd:()=>{},
   data:{},
+  modal:{},
+  setModal:()=>{},
 }
 
 const ContextAPI = createContext<ContextState>(

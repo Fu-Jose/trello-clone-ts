@@ -5,8 +5,14 @@ import ContextAPI from "./context";
 import { mockData } from "./data/mockdata";
 import { v4 as uuid } from "uuid";
 
-function App() {
+export const App: React.FC = () => {
   const [data, setData] = useState(mockData);
+  const [modal, setModal] = useState({
+    data: {},
+    list: "",
+    number: null,
+    setOpen: false,
+  });
 
   const addCard = (text: string, listId: string) => {
     const newCardId = uuid();
@@ -100,12 +106,14 @@ function App() {
   };
 
   return (
-    <ContextAPI.Provider value={{ addCard, addList, onDragEnd, data }}>
+    <ContextAPI.Provider
+      value={{ addCard, addList, onDragEnd, data, modal, setModal }}
+    >
       <div className="App">
         <Home />
       </div>
     </ContextAPI.Provider>
   );
-}
+};
 
 export default App;
