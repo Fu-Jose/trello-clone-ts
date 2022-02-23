@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import ContextAPI from "../context";
 
 interface Props {
   data: any;
@@ -9,10 +10,7 @@ export const ListTitle: React.FC<Props> = ({ data }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(data.title);
 
-  const edit = () => {
-    data.title = title;
-    setOpen(false);
-  };
+  const { editTitle } = useContext(ContextAPI);
 
   return (
     <>
@@ -22,8 +20,10 @@ export const ListTitle: React.FC<Props> = ({ data }) => {
             autoFocus
             value={title}
             onChange={(e: any) => setTitle(e.target.value)}
-            onBlur={() => edit()}
-            onKeyPress={(e: any) => e.key === "Enter" && edit()}
+            onBlur={() => (editTitle(data.id, title), setOpen(false))}
+            onKeyPress={(e: any) =>
+              e.key === "Enter" && (editTitle(data.id, title), setOpen(false))
+            }
           />
         </Container>
       ) : (

@@ -5,7 +5,7 @@ import ContextAPI from "../context";
 
 interface Props {
   data: any;
-  list: string;
+  list: { title: string; id: string };
   index: number;
 }
 
@@ -13,14 +13,11 @@ export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(data.text);
 
-  const edit = () => {
-    data.text = text;
-    setOpen(false);
-  };
+  const { editCard } = useContext(ContextAPI);
 
   const { setModal } = useContext(ContextAPI);
   const modalSwitch = () => {
-    return setModal({ data: data, list: list, index: index });
+    return setModal({ data: data, list: list.title, index: index });
   };
 
   return (
@@ -31,8 +28,13 @@ export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
             autoFocus
             value={text}
             onChange={(e: any) => setText(e.target.value)}
-            onBlur={() => edit()}
-            onKeyPress={(e: any) => e.key === "Enter" && setOpen(false)}
+            onBlur={() => (
+              editCard(list.id, data.id, index, text), setOpen(false)
+            )}
+            onKeyPress={(e: any) =>
+              e.key === "Enter" &&
+              (editCard(list.id, data.id, index, text), setOpen(false))
+            }
           />
         </div>
       ) : (

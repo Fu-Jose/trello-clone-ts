@@ -31,7 +31,7 @@ export const TrelloList: React.FC<Props> = ({ data, index }) => {
                   {data.cards.map((card: any, index: number) => (
                     <TrelloCard
                       data={card}
-                      list={data.title}
+                      list={data}
                       key={card.id}
                       index={index}
                     />

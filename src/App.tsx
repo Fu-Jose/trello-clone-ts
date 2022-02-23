@@ -14,6 +14,8 @@ export const App: React.FC = () => {
     setOpen: false,
   });
 
+  console.log(data);
+
   const addCard = (text: string, listId: string) => {
     const newCardId = uuid();
     const newCard = {
@@ -26,9 +28,7 @@ export const App: React.FC = () => {
       ...data,
       lists: {
         ...data.lists,
-        cards: list.cards,
-        // Both should be equivalent
-        // [listId]: list,
+        [listId]: list,
       },
     });
   };
@@ -45,6 +45,40 @@ export const App: React.FC = () => {
         },
       },
       listsIds: [...data.listsIds, newListId],
+    });
+  };
+
+  const editTitle = (listId: string, title: string) => {
+    setData({
+      ...data,
+      lists: {
+        ...data.lists,
+        [listId]: { ...data.lists[listId], title },
+      },
+    });
+  };
+
+  const editCard = (
+    listId: string,
+    cardId: string,
+    index: number,
+    text: string
+  ) => {
+    const newCard = {
+      id: cardId,
+      text,
+    };
+    const oldList = data.lists[listId].cards;
+    const newList = oldList.splice(index, 1, newCard);
+    setData({
+      ...data,
+      lists: {
+        ...data.lists,
+        [listId]: {
+          ...data.lists[listId],
+          cards: [...oldList],
+        },
+      },
     });
   };
 
@@ -107,7 +141,16 @@ export const App: React.FC = () => {
 
   return (
     <ContextAPI.Provider
-      value={{ addCard, addList, onDragEnd, data, modal, setModal }}
+      value={{
+        addCard,
+        addList,
+        editTitle,
+        editCard,
+        onDragEnd,
+        data,
+        modal,
+        setModal,
+      }}
     >
       <div className="App">
         <Home />
