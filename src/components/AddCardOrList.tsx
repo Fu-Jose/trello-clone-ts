@@ -2,26 +2,21 @@ import React, { useState } from "react";
 import AddCardOrListText from "./AddCardOrListText";
 import styled from "styled-components";
 
-interface props {
+interface Props {
   type: string;
   listId: string;
-  // setOpen: boolean;
 }
 
-const AddCardOrList = (props: props) => {
+const AddCardOrList: React.FC<Props> = ({ type, listId }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div>
       {open ? (
-        <AddCardOrListText
-          type={props.type}
-          listId={props.listId}
-          setOpen={setOpen}
-        />
+        <AddCardOrListText type={type} listId={listId} setOpen={setOpen} />
       ) : (
         <Container onClick={() => setOpen(true)}>
-          <Text>{props.type === "card" ? "+ Add a card" : "+ Add a list"}</Text>
+          <Text>{type === "card" ? "+ Add a card" : "+ Add a list"}</Text>
         </Container>
       )}
     </div>

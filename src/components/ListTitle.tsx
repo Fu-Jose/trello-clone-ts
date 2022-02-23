@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-interface props {
+interface Props {
   data: any;
 }
 
-export const ListTitle = (props: props) => {
+export const ListTitle: React.FC<Props> = ({ data }) => {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState(props.data.title);
+  const [title, setTitle] = useState(data.title);
 
   const edit = () => {
-    props.data.title = title;
+    data.title = title;
     setOpen(false);
   };
 

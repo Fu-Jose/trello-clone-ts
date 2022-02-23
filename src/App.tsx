@@ -42,7 +42,12 @@ function App() {
     });
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: {
+    source: { droppableId: string; index: number };
+    destination: { droppableId: string; index: number };
+    draggableId: string;
+    type: string;
+  }) => {
     const {
       source,
       source: { droppableId: srcDropId, index: srcIndex },
@@ -51,22 +56,6 @@ function App() {
       draggableId,
       type,
     } = result;
-
-    // console.table([
-    //   {
-    //     srcDropId,
-    //     destDropId,
-    //     draggableId,
-    //   },
-    // ]);
-
-    // console.table([
-    //   {
-    //     type,
-    //     srcIndex,
-    //     destIndex,
-    //   },
-    // ]);
 
     if (!destination) {
       return;

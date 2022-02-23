@@ -5,14 +5,14 @@ import AddCardOrList from "./AddCardOrList";
 import ContextAPI from "../context";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-const BoardCanvas = () => {
+const BoardCanvas: React.FC = () => {
   const { data, onDragEnd } = useContext(ContextAPI);
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="boardCanvas" type="list" direction="horizontal">
         {(provided) => (
           <Canvas
-            className=""
+            className="px-2"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >

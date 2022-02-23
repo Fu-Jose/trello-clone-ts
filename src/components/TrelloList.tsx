@@ -5,14 +5,14 @@ import { TrelloCard } from "./TrelloCard";
 import styled from "styled-components";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
-interface props {
+interface Props {
   data: any;
   index: number;
 }
 
-export const TrelloList = (props: props) => {
+export const TrelloList: React.FC<Props> = ({ data, index }) => {
   return (
-    <Draggable draggableId={props.data.id} index={props.index}>
+    <Draggable draggableId={data.id} index={index}>
       {(provided) => (
         <List>
           <Container
@@ -20,18 +20,18 @@ export const TrelloList = (props: props) => {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <ListTitle data={props.data} />
-            <Droppable droppableId={props.data.id}>
+            <ListTitle data={data} />
+            <Droppable droppableId={data.id}>
               {(provided) => (
                 <div
                   style={{ minHeight: "1px" }}
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
-                  {props.data.cards.map((card: any, index: number) => (
+                  {data.cards.map((card: any, index: number) => (
                     <TrelloCard
                       data={card}
-                      list={props.data.title}
+                      list={data.title}
                       key={card.id}
                       index={index}
                     />
@@ -40,7 +40,7 @@ export const TrelloList = (props: props) => {
                 </div>
               )}
             </Droppable>
-            <AddCardOrList type="card" listId={props.data.id} />
+            <AddCardOrList type="card" listId={data.id} />
           </Container>
         </List>
       )}
