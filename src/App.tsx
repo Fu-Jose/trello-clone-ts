@@ -68,15 +68,15 @@ export const App: React.FC = () => {
       id: cardId,
       text,
     };
-    const oldList = data.lists[listId].cards;
-    const newList = oldList.splice(index, 1, newCard);
+    const newList = data.lists[listId].cards;
+    newList.splice(index, 1, newCard);
     setData({
       ...data,
       lists: {
         ...data.lists,
         [listId]: {
           ...data.lists[listId],
-          cards: [...oldList],
+          cards: [...newList],
         },
       },
     });
