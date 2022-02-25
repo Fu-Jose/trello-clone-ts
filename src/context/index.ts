@@ -7,7 +7,6 @@ const contextDefaultValues : ContextState ={
   editTitle:()=>{},
   editCard:()=>{},
   onDragEnd:()=>{},
-  // data:{lists:{},listsIds:[]},
   data:{},
   modal:{},
   setModal:()=>{},

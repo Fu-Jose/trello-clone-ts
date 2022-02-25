@@ -14,8 +14,6 @@ export const App: React.FC = () => {
     setOpen: false,
   });
 
-  console.log(data);
-
   const addCard = (text: string, listId: string) => {
     const newCardId = uuid();
     const newCard = {

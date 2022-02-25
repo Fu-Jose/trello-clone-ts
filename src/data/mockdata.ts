@@ -12,14 +12,71 @@ export const mockData:mock = {
         {
           id: "card001",
           text: "Improve performance",
+          creator: "John Doe",
+          details: "Card 001 Improve performance",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
         {
           id: "card002",
           text: "Migration to material UI",
+          creator: "John Doe",
+          details: "Card002 Migration to Material UI",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
         {
           id: "card003",
           text: "Fix payment bug",
+          creator: "John Doe",
+          details: "Card003 Fix payment bug",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
       ],
     },
@@ -30,10 +87,16 @@ export const mockData:mock = {
         {
           id: "card101",
           text: "Refactoring functions",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: []
         },
         {
           id: "card102",
           text: "Cart functionality",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: []
         },
       ],
     },
@@ -44,14 +107,71 @@ export const mockData:mock = {
         {
           id: "card201",
           text: "Private routing",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
         {
           id: "card202",
           text: "Admin page and dashboard",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
         {
           id: "card203",
           text: "Middlewares",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
       ],
     },
@@ -62,10 +182,48 @@ export const mockData:mock = {
         {
           id: "card301",
           text: "Emailing service",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
         {
           id: "card302",
           text: "Redux Store (Not updating)",
+          creator: "John Doe",
+          details: "HERE ARE THE DETAIL. AIGHT?",
+          comments: [{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },{
+            text: "This is a comment",
+            creator: "John Doe",
+            creationDate: "2015-02-01"
+          },]
         },
       ],
     },

@@ -17,7 +17,7 @@ export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
 
   const { setModal } = useContext(ContextAPI);
   const modalSwitch = () => {
-    return setModal({ data: data, list: list.title, index: index });
+    return setModal({ data: data, list: list, index: index });
   };
 
   return (

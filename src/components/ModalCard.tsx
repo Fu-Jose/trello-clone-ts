@@ -1,21 +1,43 @@
 import React from "react";
+import ModalCardComments from "./ModalCardCommentsList";
+import ModalCardDetails from "./ModalCardDetails";
+import ModalCardMenu from "./ModalCardMenu";
 
 interface Props {
   data: any;
-  list: string;
+  list: {
+    id: string;
+    title: string;
+  };
   index: number;
 }
 
 const ModalCard: React.FC<Props> = ({ data, list, index }) => {
   return (
     <div className="modal" tabIndex={index} id={data.id}>
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">{data.text}</h5>
+      <div className="modal-dialog modal-lg">
+        <div className="modal-content" style={{ backgroundColor: "#F4F5F7" }}>
+          <div className="modal-header justify-content-start align-items-start">
+            <div className="ms-1">
+              <i className="bx bx-columns" />
+            </div>
+            <div className="flex-grow-1 ms-3">
+              <div className="d-flex">
+                <h5 className="modal-title">{data.text}</h5>
+              </div>
+              <div>
+                <span>{`from ${list.title}`}</span>
+              </div>
+            </div>
           </div>
-          <div className="modal-body">
-            <p>{`FROM LIST "${list}"`}</p>
+          <div className="modal-body d-flex">
+            <div className="col-9">
+              <ModalCardDetails list={list} card={data} />
+              <ModalCardComments comments={data.comments} />
+            </div>
+            <div className="col-3">
+              <ModalCardMenu />
+            </div>
           </div>
         </div>
       </div>
