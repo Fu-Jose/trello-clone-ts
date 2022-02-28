@@ -3,6 +3,7 @@ export type ContextState = {
     addList: (text: string) => void,
     editTitle:(id:string, title: string)=>void,
     editCard:(listId:string, cardId: string, index:number, text: string)=>void,
+    addComment:(card:{id:string},list:{id:string},text:string)=>void,
     onDragEnd:(result:any)=>void,
     // data:{lists:{},listsIds:string[]}, 
     data:any,

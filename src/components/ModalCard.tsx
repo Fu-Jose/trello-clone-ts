@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalCardComments from "./ModalCardCommentsList";
 import ModalCardDetails from "./ModalCardDetails";
 import ModalCardMenu from "./ModalCardMenu";
@@ -33,7 +33,11 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
           <div className="modal-body d-flex">
             <div className="col-9">
               <ModalCardDetails list={list} card={data} />
-              <ModalCardComments comments={data.comments} />
+              <ModalCardComments
+                comments={data.comments}
+                list={list}
+                card={data}
+              />
             </div>
             <div className="col-3">
               <ModalCardMenu />

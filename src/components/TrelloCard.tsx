@@ -1,10 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import ContextAPI from "../context";
 
 interface Props {
-  data: any;
+  data: {
+    id: string;
+    text: string;
+    comments: [];
+  };
   list: { title: string; id: string };
   index: number;
 }
@@ -12,10 +16,13 @@ interface Props {
 export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(data.text);
-
   const { editCard } = useContext(ContextAPI);
-
   const { setModal } = useContext(ContextAPI);
+
+  useEffect(() => {
+    setModal({ data: data, list: list, index: index });
+  }, [data.comments]);
+
   const modalSwitch = () => {
     return setModal({ data: data, list: list, index: index });
   };
@@ -47,7 +54,7 @@ export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
                 {...provided.draggableProps}
                 data-bs-toggle="modal"
                 data-bs-target={`#${data.id}`}
-                onMouseUp={modalSwitch}
+                onMouseUp={() => modalSwitch()}
               >
                 <CardText>{text}</CardText>
                 <i

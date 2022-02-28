@@ -6,6 +6,7 @@ const contextDefaultValues : ContextState ={
   addList:()=>{},
   editTitle:()=>{},
   editCard:()=>{},
+  addComment:()=>{},
   onDragEnd:()=>{},
   data:{},
   modal:{},

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import ContextAPI from "../context";
 
 interface Props {
   list: {
@@ -16,8 +15,6 @@ interface Props {
 const ModalCardDetails: React.FC<Props> = ({ card, list }) => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
-
-  const { editCard } = useContext(ContextAPI);
 
   useEffect(() => {
     setText(card.details);

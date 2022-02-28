@@ -80,6 +80,35 @@ export const App: React.FC = () => {
     });
   };
 
+  const addComment = (card: any, list: any, text: string) => {
+    const newComment = {
+      text,
+      creator: "Juan Jose",
+      creationDate: "new Date()",
+    };
+    const oldComments = data.lists[list.id].cards.find(
+      (id: string) => card.id
+    ).comments;
+    const newComments = [...oldComments, newComment];
+    const newCard = {
+      ...card,
+      comments: newComments,
+    };
+    const cards = data.lists[list.id].cards;
+    const cardIndex = cards.findIndex((arr: any) => arr.id === card.id);
+    cards.splice(cardIndex, 1, newCard);
+    setData({
+      ...data,
+      lists: {
+        ...data.lists,
+        [list.id]: {
+          ...data.lists[list.id],
+          cards: [...cards],
+        },
+      },
+    });
+  };
+
   const onDragEnd = (result: {
     source: { droppableId: string; index: number };
     destination: { droppableId: string; index: number };
@@ -144,6 +173,7 @@ export const App: React.FC = () => {
         addList,
         editTitle,
         editCard,
+        addComment,
         onDragEnd,
         data,
         modal,

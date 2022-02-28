@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import ContextAPI from "../context";
 
 interface Props {
   comment: {
@@ -7,9 +8,23 @@ interface Props {
     creator: string;
     creationDate: string;
   } | null;
+  list: any | null;
+  card: any | null;
 }
 
-const Comment: React.FC<Props> = ({ comment }) => {
+const Comment: React.FC<Props> = ({ comment, list, card }) => {
+  const { addComment } = useContext(ContextAPI);
+  const [text, setText] = useState("");
+
+  const handleCreate = (card: any, list: any, text: string) => {
+    if (text === "") {
+      return;
+    } else {
+      addComment(card, list, text);
+    }
+    setText("");
+  };
+
   return (
     <div className="d-flex my-3">
       <div>
@@ -21,6 +36,11 @@ const Comment: React.FC<Props> = ({ comment }) => {
             className="p-2 my-1"
             rows="1"
             placeholder="Write a comment..."
+            value={text}
+            onChange={(e: any) => {
+              setText(e.target.value);
+            }}
+            onBlur={(e: any) => handleCreate(card, list, text)}
           />
         ) : (
           <>
