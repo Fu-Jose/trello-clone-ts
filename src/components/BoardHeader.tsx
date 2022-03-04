@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BoardHeader: React.FC = () => {
   return (
-    <Header className="board__header px-3 my-2">
+    <Header className="board__header px-3 py-2">
       <HeadIn className="header__left">
         <Button className="header__button">
           <i className="bx bx-bar-chart-alt-2 bx-rotate-180"></i>Board

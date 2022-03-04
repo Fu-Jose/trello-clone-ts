@@ -22,3 +22,11 @@ main {
   margin-left: 3px;
   margin-right: 3px;
 }
+
+.board__container {
+  padding-left: 30px;
+}
+
+.open + div {
+  padding-left: 226.625px;
+}
