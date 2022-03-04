@@ -8,12 +8,15 @@ interface IUser {
 
 interface IBoard {
   id: string;
+  desc: string;
   name: string;
-  description: string;
-  // actions: [IComment];
-  // cards: [ICard];
-  // lists: [IList];
-  // members: [IUser];
+  shortLink: string;
+  shortUrl: string;
+  url: string;
+  actions: IComment[];
+  cards: ICard[];
+  lists: IList[];
+  members: IUser[];
 }
 
 interface IList {
@@ -55,7 +58,7 @@ type BoardState = {
 };
 type BoardAction = {
   type: string;
-  board: IBoard;
+  payload: IBoard;
 };
 
 type ListState = {
