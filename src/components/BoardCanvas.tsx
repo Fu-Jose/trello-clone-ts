@@ -11,11 +11,7 @@ const BoardCanvas: React.FC = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="boardCanvas" type="list" direction="horizontal">
         {(provided) => (
-          <Canvas
-            className="px-2"
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
+          <Canvas ref={provided.innerRef} {...provided.droppableProps}>
             {data.listsIds.map((id: string, index: number) => (
               <TrelloList data={data.lists[id]} key={id} index={index} />
             ))}
@@ -52,5 +48,6 @@ const Container = styled.div`
   min-width: 300px;
   padding: 10px;
   margin: 10px;
+  // padding-left: 0px;
   border-radius: 5px;
 `;
