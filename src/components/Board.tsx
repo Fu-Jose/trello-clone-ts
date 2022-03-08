@@ -3,13 +3,13 @@ import BoardHeader from "./BoardHeader";
 import BoardCanvas from "./BoardCanvas";
 import ModalCard from "./ModalCard";
 import ContextAPI from "../context";
-import SideMenu from "./SideMenu";
+import SideNav from "./SideNav";
 
 const Board: React.FC = () => {
   return (
     <main>
       <div>
-        <SideMenu />
+        <SideNav />
         <div className="board__container">
           <BoardHeader />
           <BoardCanvas />

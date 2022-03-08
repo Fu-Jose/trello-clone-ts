@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
-const SideMenu = () => {
+const SideNav = () => {
   const [open, setOpen] = useState(false);
 
   const menu = () => {
@@ -121,7 +121,7 @@ const SideMenu = () => {
   );
 };
 
-export default SideMenu;
+export default SideNav;
 
 const Nav = styled.nav`
   background-color: rgba(0, 0, 0, 0.2);
