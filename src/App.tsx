@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/home";
 import ContextAPI from "./context";
 import { mockData } from "./data/mockdata";
 import { v4 as uuid } from "uuid";
+
+const HomePage = React.lazy(() => import("./pages/home"));
+const LoginPage = React.lazy(() => import("./pages/login"));
+const ProfilePage = React.lazy(() => import("./pages/profile"));
 
 export const App: React.FC = () => {
   const [data, setData] = useState(mockData);
@@ -167,23 +171,31 @@ export const App: React.FC = () => {
   };
 
   return (
-    <ContextAPI.Provider
-      value={{
-        addCard,
-        addList,
-        editTitle,
-        editCard,
-        addComment,
-        onDragEnd,
-        data,
-        modal,
-        setModal,
-      }}
-    >
-      <div className="App">
-        <Home />
-      </div>
-    </ContextAPI.Provider>
+    <Router>
+      <ContextAPI.Provider
+        value={{
+          addCard,
+          addList,
+          editTitle,
+          editCard,
+          addComment,
+          onDragEnd,
+          data,
+          modal,
+          setModal,
+        }}
+      >
+        <div className="App">
+          <Suspense fallback={<></>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </Routes>
+          </Suspense>
+        </div>
+      </ContextAPI.Provider>
+    </Router>
   );
 };
 
