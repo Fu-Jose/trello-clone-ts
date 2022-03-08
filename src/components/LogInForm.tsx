@@ -8,15 +8,11 @@ const LogInForm = () => {
   return (
     <Wrapper>
       <Container className="p-5">
-        <Title>Log in to Trello</Title>
+        <Title>Log in to Trello Clone</Title>
         <div>
           <form onSubmit={handleLogin}>
-            <div className="d-flex flex-column">
-              <Input type="text" placeholder="Enter email" />
-              <Input type="password" placeholder="Enter password" />
-            </div>
             <div className="d-flex">
-              <Input submit type="submit" value="Log in" />
+              <a className="btn btn-primary" href={`https://trello.com/1/authorize?expiration=never&scope=read,write,account&response_type=token&name=Server%20Token&return_url=http://localhost:3000/profile&key=${process.env.REACT_APP_API_KEY}`}>Login</a>
             </div>
           </form>
         </div>
@@ -44,7 +40,7 @@ const Container = styled.div`
   width: 400px;
   border-radius: 3px;
   box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
-`;
+& a { flex-grow:1;}`;
 
 const Title = styled.h1`
   text-align: center;
