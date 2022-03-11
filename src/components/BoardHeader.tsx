@@ -1,47 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const BoardHeader: React.FC = () => {
+  const { board, loading } = useSelector((state: IRootState) => state.board);
   return (
-    <Header className="board__header px-3 py-2">
-      <HeadIn className="header__left">
-        <Button className="header__button">
-          <i className="bx bx-bar-chart-alt-2 bx-rotate-180"></i>Board
-        </Button>
-        <div className="align-self-center fw-bold mx-3">
-          <span>Trello Clone TS</span>
-        </div>
-        <Button className="header__button">
-          <i className="bx bx-star"></i>
-        </Button>
-        <div className="divider">|</div>
-        <Button className="header__button">Testing</Button>
-        <div className="divider">|</div>
-        <Button className="header__button">
-          <i className="bx bx-group"></i>Workspace visible
-        </Button>
-        <div className="divider">|</div>
-        <Button className="header__button user__btn">JA</Button>
-        <Button className="header__button invite__btn">
-          <i className="bx bx-user-plus"></i>Invite
-        </Button>
-      </HeadIn>
-      <HeadIn className="header__right">
-        <Button className="header__button">
-          <i className="bx bx-rocket"></i>Power-Ups
-        </Button>
-        <Button className="header__button">
-          <i className="bx bxs-zap"></i>Automation
-        </Button>
-        <div className="divider">|</div>
-        <Button className="header__button">
-          <i className="bx bx-filter"></i>Filter
-        </Button>
-        <Button className="header__button">
-          <i className="bx bx-dots-horizontal-rounded"></i>Show menu
-        </Button>
-      </HeadIn>
-    </Header>
+    <>
+      {loading === false ? (
+        <Header className="board__header px-3 py-2">
+          <HeadIn className="header__left">
+            <Button className="header__button">
+              <i className="bx bx-bar-chart-alt-2 bx-rotate-180"></i>Board
+            </Button>
+            <div className="align-self-center fw-bold mx-3">
+              <span>{board.name}</span>
+            </div>
+            <Button className="header__button">
+              <i className="bx bx-star"></i>
+            </Button>
+            <div className="divider">|</div>
+            <Button className="header__button">Testing</Button>
+            <div className="divider">|</div>
+            <Button className="header__button">
+              <i className="bx bx-group"></i>Workspace visible
+            </Button>
+            <div className="divider">|</div>
+            <Button className="header__button user__btn">JA</Button>
+            <Button className="header__button invite__btn">
+              <i className="bx bx-user-plus"></i>Invite
+            </Button>
+          </HeadIn>
+          <HeadIn className="header__right">
+            <Button className="header__button">
+              <i className="bx bx-rocket"></i>Power-Ups
+            </Button>
+            <Button className="header__button">
+              <i className="bx bxs-zap"></i>Automation
+            </Button>
+            <div className="divider">|</div>
+            <Button className="header__button">
+              <i className="bx bx-filter"></i>Filter
+            </Button>
+            <Button className="header__button">
+              <i className="bx bx-dots-horizontal-rounded"></i>Show menu
+            </Button>
+          </HeadIn>
+        </Header>
+      ) : (
+        <div>LOADING</div>
+      )}
+    </>
   );
 };
 

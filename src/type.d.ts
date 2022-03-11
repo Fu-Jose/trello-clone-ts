@@ -45,6 +45,14 @@ interface IComment {
   memberCreator: IUser;
 }
 
+interface IRootState {
+  user: IUser;
+  board: { board: IBoard; loading: boolean; error: any };
+  list: IList;
+  card: ICard;
+  comment: IComment;
+}
+
 type UserState = {
   user: IUser;
 };
