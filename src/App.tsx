@@ -5,6 +5,8 @@ import ContextAPI from "./context";
 import { mockData } from "./data/mockdata";
 import { v4 as uuid } from "uuid";
 
+import { Provider } from "react";
+
 const HomePage = React.lazy(() => import("./pages/home"));
 const LoginPage = React.lazy(() => import("./pages/login"));
 const ProfilePage = React.lazy(() => import("./pages/profile"));

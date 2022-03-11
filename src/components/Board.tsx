@@ -6,12 +6,12 @@ import ContextAPI from "../context";
 import SideNav from "./SideNav";
 import { useDispatch } from "react-redux";
 import { getBoard } from "../redux/actions/boardActions";
-import { checkToken } from "../redux/actions/userActions";
+import { getUser } from "../redux/actions/userActions";
 
 const Board: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkToken());
+    dispatch(getUser());
   }, [dispatch]);
 
   

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Boards from "../components/Boards";
 import SideMenu from "../components/SideMenu";
 import { useDispatch } from "react-redux";
-import { checkToken, getUser } from "../redux/actions/userActions";
+import { getUser } from "../redux/actions/userActions";
 
 const Profile:React.FC = () => {
   const token = window.location.hash.substring(7);
@@ -13,9 +13,8 @@ const Profile:React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkToken());
+    dispatch(getUser());
   });
-
 
   return (
     <div>

@@ -1,9 +1,9 @@
 import * as actionTypes from "../constants/commentConstants";
 
-export function getComment(comment: IComment) {
+export function getComment(payload: IComment) {
   const action: CommentAction = {
     type: actionTypes.GET_COMMENTS_REQUEST,
-    comment,
+    payload,
   };
   return console.log(action);
 }

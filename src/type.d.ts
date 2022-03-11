@@ -48,14 +48,16 @@ interface IComment {
 type UserState = {
   user: IUser;
 };
+
 type UserAction = {
   type: string;
-  user: IUser;
+  payload: IUser;
 };
 
 type BoardState = {
   board: IBoard;
 };
+
 type BoardAction = {
   type: string;
   payload: IBoard;
@@ -66,7 +68,7 @@ type ListState = {
 };
 type ListAction = {
   type: string;
-  list: IList;
+  payload: IList;
 };
 
 type CardState = {
@@ -82,7 +84,7 @@ type CommentState = {
 };
 type CommentAction = {
   type: string;
-  comment: IComment;
+  payload: IComment;
 };
 
 type DispatchType = (args: UserAction) => UserAction;
