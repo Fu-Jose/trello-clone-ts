@@ -2,15 +2,12 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const LogInForm = () => {
-  const handleLogin = () => {
-    const key = process.env.REACT_APP_API_KEY;
-  };
   return (
     <Wrapper>
       <Container className="p-5">
         <Title>Log in to Trello Clone</Title>
         <div>
-          <form onSubmit={handleLogin}>
+          <form>
             <div className="d-flex">
               <a className="btn btn-primary" href={`https://trello.com/1/authorize?expiration=never&scope=read,write,account&response_type=token&name=Server%20Token&return_url=http://localhost:3000/profile&key=${process.env.REACT_APP_API_KEY}`}>Login</a>
             </div>

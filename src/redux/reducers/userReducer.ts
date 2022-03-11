@@ -6,6 +6,7 @@ const initialState = {
   fullName: "",
   initials: "",
   avatarUrl: "",
+  idBoards: [],
 };
 
 export const userReducer = (
