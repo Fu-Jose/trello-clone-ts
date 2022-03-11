@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import Boards from "../components/Boards";
 import SideMenu from "../components/SideMenu";
+import { useDispatch } from "react-redux";
+import { getUser } from "../redux/actions/userActions";
 
-const profile = () => {
+const Profile:React.FC = () => {
+  const token = window.location.hash.substring(7);
+  sessionStorage.setItem('token', token);
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  });
+
   return (
     <div>
       <Header />
@@ -21,4 +32,4 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-export default profile;
+export default Profile;

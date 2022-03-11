@@ -1,9 +1,11 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ContextAPI from "./context";
 import { mockData } from "./data/mockdata";
 import { v4 as uuid } from "uuid";
+
+import { Provider } from "react";
 
 const HomePage = React.lazy(() => import("./pages/home"));
 const LoginPage = React.lazy(() => import("./pages/login"));

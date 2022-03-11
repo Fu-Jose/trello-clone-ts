@@ -1,9 +1,9 @@
 import * as actionTypes from "../constants/listConstants";
 
-export function getList(list: IList) {
+export function getList(payload: IList) {
   const action: ListAction = {
     type: actionTypes.GET_LIST_INFO_REQUEST,
-    list,
+    payload,
   };
   return console.log(action);
 }
