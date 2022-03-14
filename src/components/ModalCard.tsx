@@ -13,8 +13,9 @@ interface Props {
 }
 
 const ModalCard: React.FC<Props> = ({ data, list, index }) => {
+  console.log(data);
   return (
-    <div className="modal" tabIndex={index} id={data.id}>
+    <div className="modal" tabIndex={index} id={`_${data.id}`}>
       <div className="modal-dialog modal-lg">
         <div className="modal-content" style={{ backgroundColor: "#F4F5F7" }}>
           <div className="modal-header justify-content-start align-items-start">
@@ -23,7 +24,7 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
             </div>
             <div className="flex-grow-1 ms-3">
               <div className="d-flex">
-                <h5 className="modal-title">{data.text}</h5>
+                <h5 className="modal-title">{data.name}</h5>
               </div>
               <div>
                 <span>{`from ${list.title}`}</span>

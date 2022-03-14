@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const BoardHeader: React.FC = () => {
   const { board, loading } = useSelector((state: IRootState) => state.board);
+  const { user } = useSelector((state: IRootState) => state.user);
   return (
     <>
       {loading === false ? (
@@ -25,7 +26,9 @@ const BoardHeader: React.FC = () => {
               <i className="bx bx-group"></i>Workspace visible
             </Button>
             <div className="divider">|</div>
-            <Button className="header__button user__btn">JA</Button>
+            <Button className="header__button user__btn">
+              {user.initials}
+            </Button>
             <Button className="header__button invite__btn">
               <i className="bx bx-user-plus"></i>Invite
             </Button>

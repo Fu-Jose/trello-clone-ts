@@ -5,7 +5,6 @@ export const getUser = () => async (dispatch: Function) => {
   try {
     dispatch({ type: actionTypes.GET_USER_INFO_REQUEST });
     const userId = await checkToken(dispatch);
-    console.log(userId);
     const token = sessionStorage.getItem("token");
     const { data } = await axios.get(
       `/members/${userId}?key=${process.env.REACT_APP_API_KEY}&token=${token}`
@@ -28,7 +27,7 @@ const checkToken = async (dispatch: Function) => {
     const { data } = await axios.get(
       `/tokens/${token}?key=${process.env.REACT_APP_API_KEY}`
     );
-    // Qui fare check su validità token (campo data.dateExpires)  
+    // Qui fare check su validità token (campo data.dateExpires)
     // Poi funzione che esegua chiamata https://api.trello.com/1/members/ + data.idMember + /key=...&token=...
     return data.idMember;
   } catch (error) {
@@ -38,5 +37,3 @@ const checkToken = async (dispatch: Function) => {
     });
   }
 };
-
-

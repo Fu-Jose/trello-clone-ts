@@ -17,13 +17,13 @@ const initialState = {
         list: { id: "" },
       },
       date: "",
-      memberCreator: {
-        id: "",
-        username: "",
-        fullName: "",
-        initials: "",
-        avatarUrl: "",
-      },
+      // memberCreator: {
+      //   id: "",
+      //   username: "",
+      //   fullName: "",
+      //   initials: "",
+      //   avatarUrl: "",
+      // },
     },
   ],
   cards: [
@@ -42,15 +42,15 @@ const initialState = {
       name: "",
     },
   ],
-  members: [
-    {
-      id: "",
-      username: "",
-      fullName: "",
-      initials: "",
-      avatarUrl: "",
-    },
-  ],
+  // members: [
+  //   {
+  //     id: "",
+  //     username: "",
+  //     fullName: "",
+  //     initials: "",
+  //     avatarUrl: "",
+  //   },
+  // ],
 };
 
 export const boardReducer = (

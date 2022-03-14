@@ -4,6 +4,7 @@ import { ListTitle } from "./ListTitle";
 import { TrelloCard } from "./TrelloCard";
 import styled from "styled-components";
 import { Draggable, Droppable } from "react-beautiful-dnd";
+import { useSelector } from "react-redux";
 
 interface Props {
   data: any;
@@ -11,6 +12,10 @@ interface Props {
 }
 
 export const TrelloList: React.FC<Props> = ({ data, index }) => {
+  // console.log(data);
+
+  const { cards } = useSelector((state: IRootState) => state.board.board);
+  const { loading } = useSelector((state: IRootState) => state.board);
   return (
     <Draggable draggableId={data.id} index={index}>
       {(provided) => (
@@ -28,14 +33,18 @@ export const TrelloList: React.FC<Props> = ({ data, index }) => {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
-                  {data.cards.map((card: any, index: number) => (
-                    <TrelloCard
-                      data={card}
-                      list={data}
-                      key={card.id}
-                      index={index}
-                    />
-                  ))}
+                  {loading === false &&
+                    cards.map((card: any, index: number) => {
+                      if (data.id === card.idList)
+                        return (
+                          <TrelloCard
+                            data={card}
+                            list={data}
+                            key={card.id}
+                            index={index}
+                          />
+                        );
+                    })}
                   {provided.placeholder}
                 </div>
               )}

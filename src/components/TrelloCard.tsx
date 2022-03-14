@@ -6,7 +6,7 @@ import ContextAPI from "../context";
 interface Props {
   data: {
     id: string;
-    text: string;
+    name: string;
     comments: [];
   };
   list: { title: string; id: string };
@@ -15,7 +15,7 @@ interface Props {
 
 export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState(data.text);
+  const [text, setText] = useState(data.name);
   const { editCard } = useContext(ContextAPI);
   const { setModal } = useContext(ContextAPI);
 
@@ -53,7 +53,7 @@ export const TrelloCard: React.FC<Props> = ({ data, list, index }) => {
                 {...provided.dragHandleProps}
                 {...provided.draggableProps}
                 data-bs-toggle="modal"
-                data-bs-target={`#${data.id}`}
+                data-bs-target={`#_${data.id}`}
                 onMouseUp={() => modalSwitch()}
               >
                 <CardText>{text}</CardText>

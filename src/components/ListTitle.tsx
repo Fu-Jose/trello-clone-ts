@@ -8,7 +8,7 @@ interface Props {
 
 export const ListTitle: React.FC<Props> = ({ data }) => {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState(data.title);
+  const [title, setTitle] = useState(data.name);
 
   const { editTitle } = useContext(ContextAPI);
 

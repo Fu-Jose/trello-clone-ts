@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 import { Provider } from "react";
 
-const HomePage = React.lazy(() => import("./pages/home"));
+const BoardPage = React.lazy(() => import("./pages/board"));
 const LoginPage = React.lazy(() => import("./pages/login"));
 const ProfilePage = React.lazy(() => import("./pages/profile"));
 
@@ -190,8 +190,8 @@ export const App: React.FC = () => {
         <div className="App">
           <Suspense fallback={<></>}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/board/:id" element={<BoardPage />} />
               <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </Suspense>

@@ -4,6 +4,7 @@ interface IUser {
   fullName: string;
   initials: string;
   avatarUrl: string;
+  idBoards: IBoard[];
 }
 
 interface IBoard {
@@ -16,7 +17,7 @@ interface IBoard {
   actions: IComment[];
   cards: ICard[];
   lists: IList[];
-  members: IUser[];
+  // members: IUser[];
 }
 
 interface IList {
@@ -42,11 +43,11 @@ interface IComment {
     list: { id: string };
   };
   date: string;
-  memberCreator: IUser;
+  // memberCreator: IUser;
 }
 
 interface IRootState {
-  user: IUser;
+  user: { user: IUser; loading: boolean; error: any };
   board: { board: IBoard; loading: boolean; error: any };
   list: IList;
   card: ICard;

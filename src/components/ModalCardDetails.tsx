@@ -17,8 +17,8 @@ const ModalCardDetails: React.FC<Props> = ({ card, list }) => {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    setText(card.details);
-  }, [card.details]);
+    setText(card.desc);
+  }, [card.desc]);
 
   return (
     <div className="d-flex">

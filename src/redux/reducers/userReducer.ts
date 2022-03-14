@@ -1,4 +1,4 @@
-import { isTypeQueryNode } from "typescript";
+// import { isTypeQueryNode } from "typescript";
 import * as actionTypes from "../constants/userConstants";
 
 const initialState = {
@@ -20,7 +20,7 @@ export const userReducer = (
     case actionTypes.GET_USER_INFO_SUCCESS:
       return { user: action.payload, loading: false, error: null };
     case actionTypes.GET_USER_INFO_FAIL:
-      return { user: {}, loading: false, error: action.payload};
+      return { user: {}, loading: false, error: action.payload };
     default:
       return state;
   }

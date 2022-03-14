@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import BoardCard from "./BoardCard";
 
 const Boards = () => {
+  const { user, loading } = useSelector((state: IRootState) => state.user);
   return (
     <Wrapper>
       <Container>
@@ -45,18 +49,12 @@ const Boards = () => {
           </Menu>
           <div>
             <List>
-              <li>
-                <a
-                  href="/board_id"
-                  style={{
-                    backgroundImage:
-                      "url('https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x303/c07baf307c2c535f2c72110b18fd7519/photo-1632343095305-923ef5269761.jpg')",
-                  }}
-                >
-                  <span></span>
-                  <div className="px-2 py-1">Board name</div>
-                </a>
-              </li>
+              {loading === false &&
+                user.idBoards.map((i, index: number) => (
+                  <li className="my-3" key={index}>
+                    <BoardCard id={i} />
+                  </li>
+                ))}
             </List>
           </div>
         </div>

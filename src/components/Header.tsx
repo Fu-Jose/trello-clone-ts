@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Header: React.FC = () => {
+  const { user } = useSelector((state: IRootState) => state.user);
   return (
     <NavBar className="p-1">
       <NavIn className="header__left">
@@ -37,7 +39,7 @@ const Header: React.FC = () => {
         <Button className="header__button bell__btn">
           <i className="bx bx-bell"></i>
         </Button>
-        <Button className="header__button user__btn">JA</Button>
+        <Button className="header__button user__btn">{user.initials}</Button>
       </NavIn>
     </NavBar>
   );
