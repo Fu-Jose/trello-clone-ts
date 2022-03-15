@@ -7,6 +7,13 @@ interface IUser {
   idBoards: IBoard[];
 }
 
+interface IMember {
+  id: string;
+  username: string;
+  fullName: string;
+  initials: string;
+  avatarUrl: string;
+}
 interface IBoard {
   id: string;
   desc: string;
@@ -17,7 +24,7 @@ interface IBoard {
   actions: IComment[];
   cards: ICard[];
   lists: IList[];
-  // members: IUser[];
+  members: IMember[];
 }
 
 interface IList {
@@ -43,7 +50,7 @@ interface IComment {
     list: { id: string };
   };
   date: string;
-  // memberCreator: IUser;
+  memberCreator: IMember;
 }
 
 interface IRootState {

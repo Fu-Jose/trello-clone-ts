@@ -9,13 +9,13 @@ const initialState = {
     list: { id: "" },
   },
   date: "",
-  // memberCreator: {
-  //   id: "",
-  //   username: "",
-  //   fullName: "",
-  //   initials: "",
-  //   avatarUrl: "",
-  // },
+  memberCreator: {
+    id: "",
+    username: "",
+    fullName: "",
+    initials: "",
+    avatarUrl: "",
+  },
 };
 
 export const commentReducer = (

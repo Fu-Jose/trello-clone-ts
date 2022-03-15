@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import InviteButton from "./InviteButton";
 import { Link } from "react-router-dom";
+import WorkspaceButton from "./WorkspaceButton";
 
 const BoardHeader: React.FC = () => {
   const { board, loading } = useSelector((state: IRootState) => state.board);
@@ -24,9 +25,7 @@ const BoardHeader: React.FC = () => {
             <div className="divider">|</div>
             <Button className="header__button">Testing</Button>
             <div className="divider">|</div>
-            <Button className="header__button">
-              <i className="bx bx-group"></i>Workspace visible
-            </Button>
+            <WorkspaceButton />
             <div className="divider">|</div>
             {user && (
               <Link to={`/profile#token=${sessionStorage.getItem("token")}`}>
