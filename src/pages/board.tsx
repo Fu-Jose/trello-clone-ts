@@ -11,7 +11,7 @@ const Boardpage: React.FC = () => {
 
   useEffect(() => {
     dispatch(getBoard(id));
-  }, []);
+  }, [id]);
 
   return (
     <>

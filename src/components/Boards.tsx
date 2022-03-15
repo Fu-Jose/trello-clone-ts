@@ -52,7 +52,7 @@ const Boards = () => {
               {loading === false &&
                 user.idBoards.map((i, index: number) => (
                   <li className="my-3" key={index}>
-                    <BoardCard id={i} />
+                    <BoardCard id={i} type="card" />
                   </li>
                 ))}
             </List>

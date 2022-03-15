@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+import BoardCard from "./BoardCard";
 
 const SideNav = () => {
   const [open, setOpen] = useState(false);
@@ -18,7 +21,8 @@ const SideNav = () => {
       setOpen(false);
     }
   };
-
+  const { user, loading } = useSelector((state: IRootState) => state.user);
+  console.log(user);
   return (
     <div id="side-menu">
       {!open ? (
@@ -69,7 +73,14 @@ const SideNav = () => {
               <div>
                 <Option>
                   <i className="bx bxs-bar-chart-square"></i>
-                  <span>Boards</span>
+                  <span>
+                    <Link
+                      className="text-decoration-none text-dark"
+                      to={`/profile#token=${sessionStorage.getItem("token")}`}
+                    >
+                      Boards
+                    </Link>
+                  </span>
                 </Option>
                 <Option>
                   <i className="bx bx-user"></i>
@@ -96,14 +107,17 @@ const SideNav = () => {
                   <h6>Your boards</h6>
                   <i className="bx bx-plus"></i>
                 </div>
-                <div>THIS BOARD</div>
+                {loading === false &&
+                  user.idBoards.map((i, index: number) => (
+                    <BoardCard id={i} key={index} type="side" />
+                  ))}
               </div>
             </div>
             <div
               className="d-flex"
               style={{
                 padding: "0px 15px 0px 15px",
-                marginTop: "260px",
+                marginTop: "180px",
                 borderTop: "1px solid #172b4d",
               }}
             >

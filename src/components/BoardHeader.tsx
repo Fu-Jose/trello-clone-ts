@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import InviteButton from "./InviteButton";
+import { Link } from "react-router-dom";
 
 const BoardHeader: React.FC = () => {
   const { board, loading } = useSelector((state: IRootState) => state.board);
   const { user } = useSelector((state: IRootState) => state.user);
   return (
     <>
-      {loading === false ? (
+      {loading === false && (
         <Header className="board__header px-3 py-2">
           <HeadIn className="header__left">
             <Button className="header__button">
@@ -26,12 +28,14 @@ const BoardHeader: React.FC = () => {
               <i className="bx bx-group"></i>Workspace visible
             </Button>
             <div className="divider">|</div>
-            <Button className="header__button user__btn">
-              {user.initials}
-            </Button>
-            <Button className="header__button invite__btn">
-              <i className="bx bx-user-plus"></i>Invite
-            </Button>
+            {user && (
+              <Link to={`/profile#token=${sessionStorage.getItem("token")}`}>
+                <Button className="header__button user__btn">
+                  {user.initials}
+                </Button>
+              </Link>
+            )}
+            <InviteButton />
           </HeadIn>
           <HeadIn className="header__right">
             <Button className="header__button">
@@ -49,8 +53,6 @@ const BoardHeader: React.FC = () => {
             </Button>
           </HeadIn>
         </Header>
-      ) : (
-        <div>LOADING</div>
       )}
     </>
   );
