@@ -21,8 +21,9 @@ const SideNav = () => {
       setOpen(false);
     }
   };
+
   const { user, loading } = useSelector((state: IRootState) => state.user);
-  console.log(user);
+
   return (
     <div id="side-menu">
       {!open ? (

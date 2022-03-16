@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const WorkspaceButton = () => {
   const { board } = useSelector((state: IRootState) => state.board);
-  console.log(board.members);
   return (
     <div className="dropdown header__button">
       <Button
@@ -21,7 +20,7 @@ const WorkspaceButton = () => {
         aria-labelledby="dropdownMenuButton1"
       >
         {board.members.map((member) => (
-          <li>{member.fullName}</li>
+          <li key={member.id}>{member.fullName}</li>
         ))}
       </ul>
     </div>

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../client/axios";
 import ModalCardComments from "./ModalCardCommentsList";
 import ModalCardDetails from "./ModalCardDetails";
+import ModalCardMembers from "./ModalCardMembers";
 import ModalCardMenu from "./ModalCardMenu";
 
 interface Props {
@@ -13,9 +15,26 @@ interface Props {
 }
 
 const ModalCard: React.FC<Props> = ({ data, list, index }) => {
-  console.log(data);
+  const card = data;
+  const [members, setMembers] = useState([]);
+
+  const getCard = async (cardId: string) => {
+    const { data } = await axios.get(
+      `cards/${cardId}?key=${
+        process.env.REACT_APP_API_KEY
+      }&token=${sessionStorage.getItem("token")}`
+    );
+    setMembers(data.idMembers);
+  };
+
+  useEffect(() => {
+    if (card.id !== undefined) {
+      getCard(card.id);
+    }
+  }, [card.id]);
+
   return (
-    <div className="modal" tabIndex={index} id={`_${data.id}`}>
+    <div className="modal" tabIndex={index} id={`_${card.id}`}>
       <div className="modal-dialog modal-lg">
         <div className="modal-content" style={{ backgroundColor: "#F4F5F7" }}>
           <div className="modal-header justify-content-start align-items-start">
@@ -30,18 +49,19 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
                 <span>{`from ${list.title}`}</span>
               </div>
             </div>
+            <ModalCardMembers cardId={card.id} members={members} />
           </div>
           <div className="modal-body d-flex">
             <div className="col-9">
-              <ModalCardDetails list={list} card={data} />
+              <ModalCardDetails list={list} card={card} />
               <ModalCardComments
-                comments={data.comments}
+                comments={card.comments}
                 list={list}
-                card={data}
+                card={card}
               />
             </div>
             <div className="col-3">
-              <ModalCardMenu />
+              <ModalCardMenu cardId={card.id} />
             </div>
           </div>
         </div>
