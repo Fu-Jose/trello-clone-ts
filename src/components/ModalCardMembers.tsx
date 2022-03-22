@@ -8,39 +8,41 @@ interface Props {
 
 const ModalCardMembers: React.FC<Props> = ({ cardId, members }) => {
   const [membersInfo, setMembersInfo] = useState<IMember[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setLoading(true);
     getMembers(members);
   }, [cardId, members]);
 
+  useEffect(() => {
+    setLoading(false);
+  }, [membersInfo]);
+
   const getMembers = (members: string[]) => {
-    const membersArray: any = [];
-    const getName = async (id: string) => {
+    const membersArray: IMember[] = [];
+    members.map(async (member: string) => {
       const { data } = await axios.get(
-        `members/${id}?key=${
+        `members/${member}?key=${
           process.env.REACT_APP_API_KEY
         }&token=${sessionStorage.getItem("token")}`
       );
-      return data;
-    };
-    members.map(async (member: string) => {
-      const data = await getName(member);
       membersArray.push(data);
-      setMembersInfo(membersArray);
-      setLoading(false);
     });
+    setMembersInfo(membersArray);
   };
 
   return (
     // BUG: MAP IGNORES OBJECTS
-    <div>
-      {loading === false &&
-        membersInfo.map((member) => (
-          <div key={member.id}>{member.fullName}</div>
-        ))}
-    </div>
+    <>
+      {loading === false && (
+        <div onClick={() => console.log(membersInfo)}>
+          {membersInfo.map((member) => (
+            <div key={member.id}>{member.fullName}</div>
+          ))}
+          AS
+        </div>
+      )}
+    </>
   );
 };
 

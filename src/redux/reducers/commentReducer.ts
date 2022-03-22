@@ -24,11 +24,11 @@ export const commentReducer = (
 ) => {
   switch (action.type) {
     case actionTypes.GET_COMMENTS_REQUEST:
-      return { comment: {}, loading: true, error: null };
+      return { commentsList: {}, loading: true, error: null };
     case actionTypes.GET_COMMENTS_SUCCESS:
-      return { comment: action.payload, loading: false, error: null };
+      return { commentsList: action.payload, loading: false, error: null };
     case actionTypes.GET_COMMENTS_FAIL:
-      return { comment: {}, loading: false, error: action.payload };
+      return { commentsList: {}, loading: false, error: action.payload };
     default:
       return state;
   }

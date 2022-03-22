@@ -19,6 +19,7 @@ interface Props {
 const ModalCard: React.FC<Props> = ({ data, list, index }) => {
   const card = data;
   const [members, setMembers] = useState([]);
+  const dispatch = useDispatch();
 
   const getCard = async (cardId: string) => {
     const { data } = await axios.get(
@@ -32,8 +33,9 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
   useEffect(() => {
     if (card.id !== undefined) {
       getCard(card.id);
+      dispatch(getComments(card.id));
     }
-  }, [card.id]);
+  }, [card]);
 
   // const getComments = async (cardId: string) => {
   //   const { comment } = await axios.get(
@@ -43,8 +45,8 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
   //   );
   //   console.log(comments);
   //   setComments(data);
-  // }  
-  
+  // }
+
   return (
     <div className="modal" tabIndex={index} id={`_${card.id}`}>
       <div className="modal-dialog modal-lg">
@@ -67,7 +69,7 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
             <div className="col-9">
               <ModalCardDetails list={list} card={card} />
               <ModalCardComments
-                comments={card.comments}
+                // comments={card.comments}
                 list={list}
                 card={card}
               />

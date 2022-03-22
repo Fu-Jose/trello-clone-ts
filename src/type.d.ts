@@ -41,6 +41,9 @@ interface ICard {
   name: string;
 }
 
+// interface ICommentsList {
+//   comment: IComment[];
+// }
 interface IComment {
   id: string;
   data: {
@@ -58,7 +61,7 @@ interface IRootState {
   board: { board: IBoard; loading: boolean; error: any };
   list: IList;
   card: ICard;
-  comment: IComment;
+  comment: { commentsList: IComment[]; loading: boolean; error: any };
 }
 
 type UserState = {

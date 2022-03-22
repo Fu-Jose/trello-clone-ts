@@ -1,14 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import axios from "../client/axios";
 import ContextAPI from "../context";
 
 interface Props {
-  comment: {
-    text: string;
-    creator: string;
-    creationDate: string;
-  } | null;
+  // comment: {
+  //   text: string;
+  //   creator: string;
+  //   creationDate: string;
+  //   data: any;
+  // };
+  comment:
+    | {
+        data: {
+          text: string;
+        };
+      }
+    | undefined;
   list: any | null;
   card: any | null;
 }
@@ -16,7 +24,14 @@ interface Props {
 const Comment: React.FC<Props> = ({ comment, list, card }) => {
   const { addComment } = useContext(ContextAPI);
   const [text, setText] = useState("");
-  
+
+  useEffect(() => {
+    if (comment) {
+      setText(comment.data.text);
+    }
+    console.log(text);
+  }, []);
+
   const handleCreate = (card: any, list: any, text: string) => {
     if (text === "") {
       return;
@@ -60,15 +75,17 @@ const Comment: React.FC<Props> = ({ comment, list, card }) => {
             onBlur={(e: any) => handleCreate(card, list, text)}
           />
         </div>
-        { <div className="d-flex flex-column flex-grow-1 ms-2 me-3">
-          <div>
-            <span style={{ verticalAlign: "text-bottom", color: "#5e6c84" }}>
-              <i className="bx bx-happy"></i>
-            </span>{" "}
-            - <EditOptions>Edit</EditOptions> -{" "}
-            <EditOptions>Delete</EditOptions>
+        {
+          <div className="d-flex flex-column flex-grow-1 ms-2 me-3">
+            <div>
+              <span style={{ verticalAlign: "text-bottom", color: "#5e6c84" }}>
+                <i className="bx bx-happy"></i>
+              </span>{" "}
+              - <EditOptions>Edit</EditOptions> -{" "}
+              <EditOptions>Delete</EditOptions>
+            </div>
           </div>
-        </div> }
+        }
       </div>
     </>
   );
