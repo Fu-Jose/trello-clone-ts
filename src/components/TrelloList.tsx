@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const TrelloList: React.FC<Props> = ({ data, index }) => {
-  // console.log(data);
+  //console.log(data);
 
   const { cards } = useSelector((state: IRootState) => state.board.board);
   const { loading } = useSelector((state: IRootState) => state.board);

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "../client/axios";
+import { getComments } from "../redux/actions/commentActions";
 import ModalCardComments from "./ModalCardCommentsList";
 import ModalCardDetails from "./ModalCardDetails";
 import ModalCardMembers from "./ModalCardMembers";
@@ -33,6 +35,16 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
     }
   }, [card.id]);
 
+  // const getComments = async (cardId: string) => {
+  //   const { comment } = await axios.get(
+  //     `cards/${cardId}/action?key=${
+  //       process.env.REACT_APP_API_KEY
+  //     }&token=${sessionStorage.getItem("token")}`
+  //   );
+  //   console.log(comments);
+  //   setComments(data);
+  // }  
+  
   return (
     <div className="modal" tabIndex={index} id={`_${card.id}`}>
       <div className="modal-dialog modal-lg">
