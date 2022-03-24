@@ -6,6 +6,7 @@ const initialState = {
   idBoard: "",
   idList: "",
   name: "",
+  idMembers: [],
 };
 
 export const cardReducer = (

@@ -24,6 +24,7 @@ const initialState = {
         initials: "",
         avatarUrl: "",
       },
+      type: "",
     },
   ],
   cards: [
@@ -33,6 +34,7 @@ const initialState = {
       idBoard: "",
       idList: "",
       name: "",
+      idMembers: [],
     },
   ],
   lists: [
@@ -59,7 +61,7 @@ export const boardReducer = (
 ) => {
   switch (action.type) {
     case actionTypes.GET_BOARD_REQUEST:
-      return { board: {}, loading: true, error: null };
+      return { boardz: {}, loading: true, error: null };
     case actionTypes.GET_BOARD_SUCCESS:
       return { board: action.payload, loading: false, error: null };
     case actionTypes.GET_BOARD_FAIL:

@@ -39,11 +39,9 @@ interface ICard {
   idBoard: string;
   idList: string;
   name: string;
+  idMembers: string[];
 }
 
-// interface ICommentsList {
-//   comment: IComment[];
-// }
 interface IComment {
   id: string;
   data: {
@@ -54,13 +52,14 @@ interface IComment {
   };
   date: string;
   memberCreator: IMember;
+  type: string;
 }
 
 interface IRootState {
   user: { user: IUser; loading: boolean; error: any };
   board: { board: IBoard; loading: boolean; error: any };
   list: IList;
-  card: ICard;
+  card: { card: ICard; loading: boolean; error: any };
   comment: { commentsList: IComment[]; loading: boolean; error: any };
 }
 

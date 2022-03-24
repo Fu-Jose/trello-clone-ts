@@ -16,6 +16,7 @@ const initialState = {
     initials: "",
     avatarUrl: "",
   },
+  type: "",
 };
 
 export const commentReducer = (
@@ -24,11 +25,11 @@ export const commentReducer = (
 ) => {
   switch (action.type) {
     case actionTypes.GET_COMMENTS_REQUEST:
-      return { commentsList: {}, loading: true, error: null };
+      return { commentsList: [], loading: true, error: null };
     case actionTypes.GET_COMMENTS_SUCCESS:
       return { commentsList: action.payload, loading: false, error: null };
     case actionTypes.GET_COMMENTS_FAIL:
-      return { commentsList: {}, loading: false, error: action.payload };
+      return { commentsList: [], loading: false, error: action.payload };
     default:
       return state;
   }
