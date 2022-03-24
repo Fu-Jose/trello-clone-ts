@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "../client/axios";
+import { getCard } from "../redux/actions/cardActions";
 import { getComments } from "../redux/actions/commentActions";
 import ModalCardComments from "./ModalCardCommentsList";
 import ModalCardDetails from "./ModalCardDetails";
@@ -21,18 +22,9 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
   const [members, setMembers] = useState([]);
   const dispatch = useDispatch();
 
-  const getCard = async (cardId: string) => {
-    const { data } = await axios.get(
-      `cards/${cardId}?key=${
-        process.env.REACT_APP_API_KEY
-      }&token=${sessionStorage.getItem("token")}`
-    );
-    setMembers(data.idMembers);
-  };
-
   useEffect(() => {
     if (card.id !== undefined) {
-      getCard(card.id);
+      dispatch(getCard(card.id));
       dispatch(getComments(card.id));
     }
   }, [card]);
