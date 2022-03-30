@@ -32,7 +32,6 @@ const Comment: React.FC<Props> = ({ comment, card }) => {
     if (comment) {
       setText(comment.data.text);
     }
-    console.log(text);
   }, []);
 
   const handleCreate = (card: any, text: string) => {
@@ -43,8 +42,6 @@ const Comment: React.FC<Props> = ({ comment, card }) => {
     // }
     // setText("");
   };
-
-  console.log(comment);
 
   return (
     <>

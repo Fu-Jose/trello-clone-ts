@@ -12,11 +12,7 @@ import * as actionTypes from "../constants/commentConstants";
 export const getComments = (id: any) => async (dispatch: Function) => {
   try {
     dispatch({ type: actionTypes.GET_COMMENTS_REQUEST });
-    const { data } = await axios.get(
-      `cards/${id}/actions?key=${
-        process.env.REACT_APP_API_KEY
-      }&token=${sessionStorage.getItem("token")}`
-    );
+    const { data } = await axios.get(`cards/${id}/actions`);
     dispatch({ type: actionTypes.GET_COMMENTS_SUCCESS, payload: data });
   } catch (error) {
     const message = "Something went wrong";

@@ -1,26 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "../client/axios";
 import styled from "styled-components";
 
 interface Props {
   cardId: string;
+  members: IMember[] | undefined;
 }
 
-const ModalCardMenu: React.FC<Props> = ({ cardId }) => {
+const ModalCardMenu: React.FC<Props> = ({ cardId, members }) => {
   const { board, loading } = useSelector((state: IRootState) => state.board);
-  // const members = board.members;
+  const [invites, setInvites] = useState<IMember[]>([]);
+
   const handleInvite = async (member: IMember) => {
     const memberId = member.id;
     const { data } = await axios.post(
-      `cards/${cardId}/idMembers?value=${memberId}&key=${
-        process.env.REACT_APP_API_KEY
-      }&token=${sessionStorage.getItem("token")}`
+      `cards/${cardId}/idMembers?value=${memberId}`
     );
     console.log(data);
     console.log("Invite clicked", member, cardId);
   };
 
+  // useEffect(() => {
+  //   if (members && board) {
+  //     board.members.map((element) => {
+  //       const inviteas = [];
+  //       const a = members.find((member) => member.id === element.id);
+
+  //       if (a) {
+  //         inviteas.push(element);
+  //         console.log(inviteas);
+  //       }
+  //       setInvites(invites);
+  //     });
+  //   }
+  // }, [cardId]);
+
+  // console.log(invites);
+  //   const invites = board.members;
+  //   // board.members.map((member) => {});
+  //   console.log(members);
+  //   board.members.forEach((member: IMember) => {
+  //     const a = members.findIndex((c: any) => c.id === member.id);
+  //     console.log(a);
+  //     if (a) {
+  //       invites.splice(a, 1);
+  //       console.log(invites);
+  //     }
+  //     // console.log(member);
+  //     // console.log(cardMember);
+  //     // if (cardMember === undefined) {
+  //     //   invites.push(member);
+  //     //   console.log("NOT SHODO");
+  //     // }
+  //   });
+  //   // setInvites(invites);
+  // }
   return (
     <>
       {loading === false && (
@@ -40,18 +75,19 @@ const ModalCardMenu: React.FC<Props> = ({ cardId }) => {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton1"
               >
-                {board.members.map((member) => (
-                  <li
-                    className="d-flex align-items-center justify-content-aound"
-                    key={member.id}
-                    onClick={() => handleInvite(member)}
-                  >
-                    <i className="bx bx-plus mx-1" />
-                    <span className="dropdown-item p-0 me-1">
-                      {member.fullName}
-                    </span>
-                  </li>
-                ))}
+                {board.members &&
+                  board.members.map((member) => (
+                    <li
+                      className="d-flex align-items-center justify-content-aound"
+                      key={member.id}
+                      onClick={() => handleInvite(member)}
+                    >
+                      <i className="bx bx-plus mx-1" />
+                      <span className="dropdown-item p-0 me-1">
+                        {member.fullName}
+                      </span>
+                    </li>
+                  ))}
               </ul>
             </div>
             <Button>

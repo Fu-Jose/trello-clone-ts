@@ -4,7 +4,7 @@ import Comment from "./Comment";
 
 interface Props {
   list: any | null;
-  card: any | null;
+  card: ICard;
 }
 
 const ModalCardCommentsList: React.FC<Props> = ({ list, card }) => {

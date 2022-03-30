@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "../client/axios";
+// import axios from "../client/axios";
 import { getCard } from "../redux/actions/cardActions";
 import { getComments } from "../redux/actions/commentActions";
 import ModalCardComments from "./ModalCardCommentsList";
@@ -31,25 +31,21 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
       dispatch(getCard(card.id));
       dispatch(getComments(card.id));
     }
-  }, [data]);
+  }, [data, card.id, dispatch]);
 
   useEffect(() => {
-    if (loading) {
-      console.log("loading", loading);
+    if (loading || !card.idMembers || !board) {
       return;
     }
-    const thisCard = board.cards.find((c) => c.id === card.id);
-    if (thisCard !== undefined) {
-      const cardMembers: IMember[] = [];
-      card.idMembers.forEach((member: any) => {
-        const cardMember = board.members.find((c: any) => c.id === member);
-        if (cardMember !== undefined) {
-          cardMembers.push(cardMember);
-        }
-      });
-      setMembers(cardMembers);
-    }
-  }, [card.id]);
+    const cardMembers: IMember[] = [];
+    card.idMembers.forEach((member: any) => {
+      const cardMember = board.members.find((c: any) => c.id === member);
+      if (cardMember !== undefined) {
+        cardMembers.push(cardMember);
+      }
+    });
+    setMembers(cardMembers);
+  }, [board, card.id, card.idMembers, data, loading]);
 
   return (
     <div className="modal" tabIndex={index} id={`_${card.id}`}>
@@ -79,7 +75,7 @@ const ModalCard: React.FC<Props> = ({ data, list, index }) => {
               />
             </div>
             <div className="col-3">
-              <ModalCardMenu cardId={card.id} />
+              <ModalCardMenu cardId={card.id} members={members} />
             </div>
           </div>
         </div>

@@ -11,11 +11,7 @@ const BoardCard: React.FC<Props> = ({ id, type }) => {
   const [name, setName] = useState("");
 
   const getName = async (id: string) => {
-    const { data } = await axios.get(
-      `board/${id}?key=${
-        process.env.REACT_APP_API_KEY
-      }&token=${sessionStorage.getItem("token")}`
-    );
+    const { data } = await axios.get(`board/${id}`);
     setName(data.name);
   };
 
