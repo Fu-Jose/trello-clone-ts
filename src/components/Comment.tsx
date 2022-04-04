@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { newComment } from "../redux/actions/commentActions";
 import styled from "styled-components";
 import axios from "../client/axios";
 import ContextAPI from "../context";
@@ -24,23 +25,25 @@ interface Props {
 }
 
 const Comment: React.FC<Props> = ({ comment, card }) => {
-  const { addComment } = useContext(ContextAPI);
   const [text, setText] = useState("");
   const { user, loading } = useSelector((state: IRootState) => state.user);
-
+  
   useEffect(() => {
     if (comment) {
       setText(comment.data.text);
     }
   }, []);
 
+  const dispatch = useDispatch();
+  
   const handleCreate = (card: any, text: string) => {
-    // if (text === "") {
-    //   return;
-    // } else {
-    //   addComment(card, text);
-    // }
-    // setText("");
+    const cardid = card.id;
+    if (text === "") {
+      return;
+    } else {
+      dispatch(newComment(cardid, text));
+    } 
+    setText("");
   };
 
   return (
