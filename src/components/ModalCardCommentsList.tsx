@@ -12,7 +12,7 @@ const ModalCardCommentsList: React.FC<Props> = ({ list, card }) => {
   const { commentsList, loading } = useSelector(
     (state: IRootState) => state.comment
   );
-
+    
   return (
     <>
       {!loading && (
@@ -25,7 +25,7 @@ const ModalCardCommentsList: React.FC<Props> = ({ list, card }) => {
               .map((comment: any, index: number) => (
                 <Comment comment={comment} key={index} card={null} />
               ))
-              .reverse()}
+              }
               
         </div>
       )}
