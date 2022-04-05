@@ -2,18 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { newComment } from "../redux/actions/commentActions";
 import styled from "styled-components";
-import axios from "../client/axios";
-import ContextAPI from "../context";
-
-interface Props {
-  // comment: {
-  //   text: string;
-  //   creator: string;
-  //   creationDate: string;
-  //   data: any;
-  // };
+interface Comment {
   comment:
     | {
+        id: string;
         data: {
           text: string;
         };
@@ -24,27 +16,29 @@ interface Props {
   card: any | null;
 }
 
-const Comment: React.FC<Props> = ({ comment, card }) => {
+const Comment: React.FC<Comment> = ({ comment, card }) => {
   const [text, setText] = useState("");
-  const { user, loading } = useSelector((state: IRootState) => state.user);
   
-  useEffect(() => {
-    if (comment) {
-      setText(comment.data.text);
-    }
-  }, []);
+  const { user, loading } = useSelector((state: IRootState) => state.user);
 
   const dispatch = useDispatch();
   
   const handleCreate = (card: any, text: string) => {
     const cardid = card.id;
+    
     if (text === "") {
       return;
-    } else {
+    } else { 
       dispatch(newComment(cardid, text));
-    } 
+    }
     setText("");
   };
+
+  useEffect(() => {
+    if (comment) {
+      setText(comment.data.text);
+    }
+  }, []);
 
   return (
     <>

@@ -12,7 +12,7 @@ export const getComments = (id: any) => async (dispatch: Function) => {
   }
 };
 
-export const newComment = (id: any, comment: String) => async (dispatch: Function) => {
+export const newComment = (id: string, comment: String) => async (dispatch: Function) => {
   try {
     dispatch({ type: actionTypes.PUT_COMMENTS_REQUEST });
     const { data } = await axios.post(
@@ -22,5 +22,25 @@ export const newComment = (id: any, comment: String) => async (dispatch: Functio
   } catch (error) {
     const message = "Put comment error";
     dispatch({ type: actionTypes.PUT_COMMENTS_FAIL, payload: message });
+  } 
+  finally {
+    dispatch(getComments(id)); 
   }
 };
+
+export const deleteComment = (idCard: String, idComment: String) =>async (dispatch: Function) => {
+  try {
+    dispatch({ type: actionTypes.DELETE_COMMENTS_REQUEST });
+    const { data } = await axios.delete(
+      `cards/${idCard}/actions/${idComment}/comments`
+    );
+    dispatch({ type: actionTypes.DELETE_COMMENTS_SUCCESS, payload: data });
+  } 
+  catch (error) {
+      const message = "Delete comment error";
+      dispatch({ type: actionTypes.DELETE_COMMENTS_FAIL, payload: message })
+  } 
+  finally { 
+    dispatch(getComments(idCard)); 
+  }
+}
